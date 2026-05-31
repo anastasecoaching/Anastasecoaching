@@ -845,7 +845,7 @@ const pbar = p => `<div class="pb"><div class="pf" style="width:${Math.min(100,p
 async function callAPI(prompt, maxTok, json) {
   const sys = json ? "Réponds UNIQUEMENT en JSON valide, sans markdown ni texte." : "Tu es Nicolas Bernardin-Germain, coach certifié BPJEPS AGFF, fondateur Anastase Coaching.";
   console.log("Appel API pour prompt:", prompt.substring(0,50)+"...");
-  const r = await fetch("/api/claude",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:maxTok||3000,system:sys,messages:[{role:"user",content:prompt}]})});
+  const r = await fetch("/api/claude",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:"claude-sonnet-4-5",max_tokens:maxTok||3000,system:sys,messages:[{role:"user",content:prompt}]})});
   const d = await r.json();
   console.log("API response status:", r.status, "error:", d.error);
   if(d.error) throw new Error(d.error.message);
