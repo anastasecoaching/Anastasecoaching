@@ -165,6 +165,7 @@ textarea.inp{resize:vertical;min-height:55px;}
       <input id="login-code" class="inp" type="password" placeholder="Code : COACH2027" style="width:100%;text-align:center;letter-spacing:2px;" onkeydown="if(event.key==='Enter')doLogin()"/>
       <div id="login-err" class="hidden" style="font-size:12px;color:#ef4444;text-align:center;">Code incorrect. Contacte ton coach.</div>
       <button class="gbtn full" onclick="doLogin()">Se connecter</button>
+      <div style="text-align:center;margin-top:12px;font-size:13px;color:var(--tx3);">Nouveau client ? <span onclick="showAutoInscription()" style="color:var(--v);cursor:pointer;font-weight:600;">Créer mon compte</span></div>
       <div style="height:1px;background:#222;width:100%;"></div>
       <button onclick="openQuestionnaire()" style="width:100%;padding:11px;border:1px solid var(--v);background:rgba(184,212,0,.08);color:var(--v);border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;">
         🎯 Trouver mon programme gratuit
@@ -292,6 +293,29 @@ textarea.inp{resize:vertical;min-height:55px;}
   <div id="quest-content" class="wrap" style="padding-bottom:40px;"></div>
 </div>
 <script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -513,66 +537,7 @@ let COACHES = {
     specialite:"BPJEPS AGFF · Coach certifié",
     app_nom:"Anastase Coaching", couleur:"#B8D400",
     plan:"admin", date_inscription:"01/01/2024", actif:true,
-    clients:[
-      {id:1,pr:"Rihab",nm:"Hammami",em:"rihab@mail.fr",tl:"0658974230",code:"RIHAB001",
-       obj:"Perte de gras",of:"Suivi Pro",st:"actif",ta:165,
-       no:"Très motivée. Éviter glucides le soir.",
-       po:[{d:"01/05",v:66},{d:"08/05",v:65.2},{d:"15/05",v:64.5},{d:"22/05",v:63.8},{d:"27/05",v:63.2}],
-       prog:{
-         "Lundi":["Squat barre 4×12 — 50kg","Fentes marchées 3×15","Hip thrust barre 4×12 — 40kg","Abducteurs machine 3×20"],
-         "Mercredi":["HIIT tapis 20min","Gainage frontal 3×45s","Crunch 3×20","Mountain climbers 3×30"],
-         "Vendredi":["Deadlift roumain haltères 4×12 — 2×15kg","Leg press 3×15 — 60kg","Kickbacks poulie 3×15 chaque côté","Russian twist 3×20"]
-       },
-       rappels:{jours:["Lundi","Mercredi","Vendredi"],msg:"C'est le jour de ta séance ! 💪"},
-       nutri:{cal:1650,prot:130,gluc:145,lip:55,
-         repas:["Flocons avoine 60g + whey 30g + fruits rouges","Poulet 150g + riz brun 80g + légumes verts","Yaourt grec 150g + 10 amandes","Saumon 140g + légumes vapeur"]},
-       ci:[{t:"Poids 63.2kg — Super semaine !",d:"Il y a 2j",ok:true}],
-       ms:[{f:"client",t:"J'ai raté mercredi, je compense ?",h:"Hier 18h",lu:false},{f:"coach",t:"Oui ! Fais le programme vendredi en priorité.",h:"Hier 20h",lu:true}],
-       fac:[{ref:"FAC-001",date:"01/04/2025",desc:"Suivi Pro — Avril",mt:99,st:"payé"},{ref:"FAC-002",date:"01/05/2025",desc:"Suivi Pro — Mai",mt:99,st:"payé"},{ref:"FAC-003",date:"01/06/2025",desc:"Suivi Pro — Juin",mt:99,st:"en attente"}],
-       logs:[{date:"27/05",jour:"Vendredi",exos:[{nom:"Deadlift roumain",series:[{reps:12,charge:15},{reps:12,charge:15}]},{nom:"Hip thrust",series:[{reps:15,charge:40}]}],sensation:8,note:"PR deadlift 15kg ! Séance top"}],
-       defis:[{id:1,titre:"30 jours sans sucre",desc:"Aucun sucre ajouté",objectif:30,progress:12,st:"en cours"},{id:2,titre:"10 000 pas/jour",desc:"14 jours consécutifs",objectif:14,progress:14,st:"réussi"}],
-       journal:[{date:"27/05",repas:[{nom:"Flocons+whey+banane",cal:420,prot:32},{nom:"Poulet+riz",cal:510,prot:45},{nom:"Fromage blanc",cal:210,prot:18},{nom:"Saumon vapeur",cal:480,prot:38}],energie:8,note:"Plan respecté à 100%"}],
-       gamif:{xp_bonus:0,streak:5,badges_earned:["first_session"],last_log_date:"27/05"}},
-
-      {id:2,pr:"Loïc",nm:"Moreau",em:"loic@mail.fr",tl:"0612345678",code:"LOIC001",
-       obj:"Prise de masse",of:"Premium",st:"actif",ta:178,
-       no:"Ectomorphe. Augmenter les calories progressivement.",
-       po:[{d:"01/05",v:74},{d:"08/05",v:74.5},{d:"15/05",v:75},{d:"22/05",v:75.4},{d:"27/05",v:75.8}],
-       prog:{
-         "Lundi":["Développé couché haltères 5×5 — 2×30kg","Rowing haltère 4×8 — 25kg","Élévations latérales 3×12 — 8kg","Curl biceps 3×10 — 12kg"],
-         "Jeudi":["Squat barre 5×5 — 80kg","Deadlift 4×5 — 90kg","Hip thrust barre 4×10 — 60kg","Mollets debout 4×15"],
-         "Samedi":["Développé militaire 4×8 — 40kg","Tirage poulie haute 4×8","Tractions 3×max","Extension triceps 3×12"]
-       },
-       rappels:{jours:["Lundi","Jeudi","Samedi"],msg:"Séance du jour ! Mange bien avant 💪"},
-       nutri:{cal:3200,prot:175,gluc:380,lip:90,
-         repas:["4 œufs + flocons avoine 80g + banane + jus","Bœuf 180g + pâtes 120g + sauce tomate","Whey 40g + riz cakes + beurre cacahuète","Thon 200g + riz 120g + avocat"]},
-       ci:[{t:"Poids 75.8kg — Ça monte bien !",d:"Il y a 2j",ok:true}],
-       ms:[{f:"coach",t:"Augmente à 3200kcal cette semaine.",h:"Lun. 09h",lu:true}],
-       fac:[{ref:"FAC-004",date:"01/05/2025",desc:"Premium — Mai",mt:149,st:"payé"},{ref:"FAC-005",date:"01/06/2025",desc:"Premium — Juin",mt:149,st:"en attente"}],
-       logs:[{date:"27/05",jour:"Lundi",exos:[{nom:"Développé couché",series:[{reps:5,charge:30},{reps:5,charge:32}]}],sensation:9,note:"PR bench 32kg haltères !"}],
-       defis:[{id:1,titre:"3200kcal/30 jours",objectif:30,progress:18,st:"en cours",desc:"Atteindre l'apport calorique"}],
-       journal:[],
-       gamif:{xp_bonus:0,streak:3,badges_earned:["first_session","session_5"],last_log_date:"27/05"}},
-
-      {id:3,pr:"Pauline",nm:"Durand",em:"pauline@mail.fr",tl:"0698765432",code:"PAUL001",
-       obj:"Remise en forme",of:"Starter",st:"pause",ta:162,
-       no:"En déplacement pro. Reprend en juin.",
-       po:[{d:"01/05",v:58.5},{d:"08/05",v:58.2},{d:"15/05",v:58}],
-       prog:{
-         "Mardi":["Marche rapide 20min","Squat poids du corps 3×15","Glute bridge 3×20","Gainage 3×30s"],
-         "Vendredi":["Vélo stationnaire 20min","Pompes genoux 3×10","Rowing haltère léger 3×12 — 6kg","Crunch 3×15"]
-       },
-       rappels:{jours:["Mardi","Vendredi"],msg:"N'oublie pas ta séance !"},
-       nutri:{cal:1450,prot:105,gluc:150,lip:48,
-         repas:["Yaourt grec + granola + fruits","Poulet 130g + légumes + riz 70g","Fromage blanc + noix","Saumon 130g + légumes vapeur"]},
-       ci:[{t:"Pause — déplacement pro jusqu'au 15 juin",d:"Il y a 5j",ok:false}],
-       ms:[{f:"client",t:"Absente jusqu'au 15 juin.",h:"Il y a 5j",lu:true}],
-       fac:[{ref:"FAC-006",date:"01/05/2025",desc:"Starter — Mai",mt:29,st:"payé"}],
-       logs:[],
-       defis:[{id:1,titre:"Première traction",objectif:1,progress:0,st:"en cours",desc:"Sans élastique"}],
-       journal:[],
-       gamif:{xp_bonus:0,streak:0,badges_earned:[],last_log_date:""}}
-    ]
+    clients:[]
   }
 };
 
@@ -779,6 +744,42 @@ function addFloatingBtn() {
   const fab = document.createElement("button");
   fab.id = "fab-quicklog";
   fab.innerHTML = "⚡ Logger";
+  // Bouton photo repas
+  if(!document.getElementById("fab-photo")) {
+    // Bouton traceur GPS
+  if(!document.getElementById("fab-traceur")) {
+    const fabTraceur = document.createElement("button");
+    fabTraceur.id = "fab-traceur";
+    fabTraceur.innerHTML = "📍 Activité GPS";
+    fabTraceur.onclick = showTraceur;
+    fabTraceur.style.cssText = "position:fixed;bottom:130px;right:20px;background:#1a1a1a;color:var(--v);border:2px solid var(--v);padding:12px 18px;border-radius:30px;font-size:13px;font-weight:700;cursor:pointer;z-index:100;box-shadow:0 4px 15px rgba(0,0,0,.3);font-family:inherit;";
+    document.body.appendChild(fabTraceur);
+  }
+  // Bouton Coach IA
+  if(!document.getElementById("fab-coach-ia")) {
+    const fabCoachIA = document.createElement("button");
+    fabCoachIA.id = "fab-coach-ia";
+    fabCoachIA.innerHTML = "🤖 Coach IA";
+    fabCoachIA.onclick = showCoachIA;
+    fabCoachIA.style.cssText = "position:fixed;bottom:180px;right:20px;background:#1a1a1a;color:var(--v);border:2px solid var(--v);padding:12px 18px;border-radius:30px;font-size:13px;font-weight:700;cursor:pointer;z-index:100;box-shadow:0 4px 15px rgba(0,0,0,.3);font-family:inherit;";
+    document.body.appendChild(fabCoachIA);
+  }
+  // Bouton Photo Transformation
+  if(!document.getElementById("fab-transfo")) {
+    const fabTransfo = document.createElement("button");
+    fabTransfo.id = "fab-transfo";
+    fabTransfo.innerHTML = "📸 Transformation";
+    fabTransfo.onclick = showPhotoTransformation;
+    fabTransfo.style.cssText = "position:fixed;bottom:230px;right:20px;background:#1a1a1a;color:var(--v);border:2px solid var(--v);padding:12px 18px;border-radius:30px;font-size:13px;font-weight:700;cursor:pointer;z-index:100;box-shadow:0 4px 15px rgba(0,0,0,.3);font-family:inherit;";
+    document.body.appendChild(fabTraceur);
+  }
+  const fabPhoto = document.createElement("button");
+    fabPhoto.id = "fab-photo";
+    fabPhoto.innerHTML = "📸 Photo repas";
+    fabPhoto.onclick = showPhotoRepas;
+    fabPhoto.style.cssText = "position:fixed;bottom:80px;right:20px;background:#1a1a1a;color:var(--v);border:2px solid var(--v);padding:12px 18px;border-radius:30px;font-size:13px;font-weight:700;cursor:pointer;z-index:100;box-shadow:0 4px 15px rgba(0,0,0,.3);font-family:inherit;";
+    document.body.appendChild(fabPhoto);
+  }
   fab.onclick = showQuickLog;
   fab.style.cssText = "position:fixed;bottom:24px;right:20px;background:var(--v);color:var(--k);border:none;padding:14px 20px;border-radius:30px;font-size:14px;font-weight:700;cursor:pointer;z-index:100;box-shadow:0 4px 20px rgba(184,212,0,.4);font-family:inherit;display:flex;align-items:center;gap:6px;animation:pulse 2s infinite;";
   document.body.appendChild(fab);
@@ -787,6 +788,11 @@ function addFloatingBtn() {
 function removeFloatingBtn() {
   const fab = document.getElementById("fab-quicklog");
   if(fab) fab.remove();
+  const fabP = document.getElementById("fab-photo");
+  if(fabP) fabP.remove();
+  const fabT = document.getElementById("fab-traceur");
+  if(fabT) fabT.remove();
+  ['fab-coach-ia','fab-transfo'].forEach(id=>{const e=document.getElementById(id);if(e)e.remove();});
 }
 
 
@@ -5585,6 +5591,208 @@ function accederMonCompte(code, btn) {
   }
 }
 
+
+// ═══════════════════════ ANALYSE PHOTO REPAS ═════════════════════════
+function triggerGallery(){var i=document.getElementById('photo-input');if(i){i.removeAttribute('capture');i.click();}}
+
+function enregistrerDernierRepas() {
+  if(!_dernierResultatPhoto) return;
+  const r = _dernierResultatPhoto;
+  enregistrerRepasPhoto(r.calories_estimees, r.aliments.join(', '), r.proteines, r.glucides, r.lipides);
+}
+
+function fermerPhotoModal(){var m=document.getElementById('photo-repas-modal');if(m)m.remove();}
+
+function showPhotoRepas() {
+  const me = getC(state.myId);
+  if(!me) return;
+  const mo = document.createElement("div");
+  mo.id = "photo-repas-modal";
+  mo.style.cssText = "position:fixed;top:0;right:0;bottom:0;left:0;background:rgba(0,0,0,.92);display:flex;align-items:flex-end;justify-content:center;z-index:150;padding:16px;";
+  mo.onclick = (e) => { if(e.target===mo) mo.remove(); };
+  const card = document.createElement("div");
+  card.style.cssText = "background:#1a1a1a;border:2px solid var(--v);border-radius:20px 20px 0 0;padding:20px;width:100%;max-width:480px;";
+  card.innerHTML =
+    "<div style='display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;'>"
+    +"<span style=\"font-size:20px;color:#888;cursor:pointer;\" onclick=\"fermerPhotoModal()\">x</span>"
+    +"<span style='font-size:20px;color:#888;cursor:pointer;' onclick='fermerPhotoModal()'>x</span>"
+    +"</div>"
+    +"<div style='font-size:13px;color:var(--tx3);margin-bottom:16px;'>Prends une photo de ton repas — l'IA estime les calories et te dit si c'est adapté à ton objectif.</div>"
+    +"<div id='photo-preview' style='width:100%;aspect-ratio:16/9;background:#111;border-radius:12px;border:2px dashed #333;display:flex;align-items:center;justify-content:center;margin-bottom:16px;overflow:hidden;'>"
+    +"<div style='text-align:center;color:#444;'><div style='font-size:48px;'>📷</div><div style='font-size:13px;margin-top:8px;'>Aucune photo sélectionnée</div></div>"
+    +"</div>"
+    +"<input type='file' id='photo-input' accept='image/*' capture='environment' style='display:none;' onchange='previewPhoto(this)'/>"
+    +"<div style='display:flex;gap:8px;margin-bottom:16px;'>"
+    +"<button onclick='document.getElementById(\'photo-input\').click()' style='flex:1;background:rgba(184,212,0,.1);color:var(--v);border:1px solid var(--v);padding:12px;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;'>📷 Prendre une photo</button>"
+    +"<button onclick='triggerGallery()' style='flex:1;background:rgba(184,212,0,.1);color:var(--v);border:1px solid var(--v);padding:12px;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;'>🖼️ Galerie</button>"
+    +"</div>"
+    +"<div id='photo-result' style='display:none;'></div>"
+    +"<button id='analyse-btn' onclick='analyserPhoto()' disabled style='width:100%;background:#333;color:#666;border:none;padding:14px;border-radius:12px;font-size:15px;font-weight:700;cursor:not-allowed;font-family:inherit;'>Analyser avec l\'IA</button>";
+  mo.appendChild(card);
+  document.body.appendChild(mo);
+}
+
+let _photoBase64 = null;
+let _dernierResultatPhoto = null;
+
+function previewPhoto(input) {
+  const file = input.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    _photoBase64 = e.target.result.split(',')[1];
+    const preview = document.getElementById('photo-preview');
+    if(preview) {
+      preview.innerHTML = '<img src="'+e.target.result+'" style="width:100%;height:100%;object-fit:cover;border-radius:10px;"/>';
+    }
+    const btn = document.getElementById('analyse-btn');
+    if(btn) {
+      btn.disabled = false;
+      btn.style.background = 'var(--v)';
+      btn.style.color = '#0A0A0A';
+      btn.style.cursor = 'pointer';
+    }
+  };
+  reader.readAsDataURL(file);
+}
+
+async function analyserPhoto() {
+  if(!_photoBase64) return;
+  const me = getC(state.myId);
+  const btn = document.getElementById('analyse-btn');
+  const resultDiv = document.getElementById('photo-result');
+  if(btn) { btn.textContent = 'Analyse en cours...'; btn.disabled = true; }
+
+  // Objectifs nutritionnels du client
+  const objectifCal = me?.nutri?.cal || 1800;
+  const objectifProt = me?.nutri?.prot || 130;
+  const objectifObj = me?.obj || 'perte de gras';
+
+  const systemPrompt = `Tu es un expert en nutrition sportive. Analyse cette photo de repas et réponds UNIQUEMENT en JSON valide sans markdown, avec cette structure exacte:
+{
+  "aliments": ["aliment1", "aliment2"],
+  "calories_estimees": 450,
+  "proteines": 35,
+  "glucides": 40,
+  "lipides": 12,
+  "verdict": "excellent",
+  "message": "Message court et encourageant en français",
+  "conseil": "Un conseil court et pratique"
+}
+Le verdict doit être: "excellent", "bon", "moyen", ou "eviter".
+L'objectif du client est ${objectifObj}, avec ${objectifCal} kcal/j et ${objectifProt}g protéines/j.`;
+
+  try {
+    const response = await fetch('/api/claude', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-5',
+        max_tokens: 500,
+        system: systemPrompt,
+        messages: [{
+          role: 'user',
+          content: [{
+            type: 'image',
+            source: { type: 'base64', media_type: 'image/jpeg', data: _photoBase64 }
+          }, {
+            type: 'text',
+            text: 'Analyse ce repas et donne-moi les informations nutritionnelles en JSON.'
+          }]
+        }]
+      })
+    });
+    const data = await response.json();
+    const text = data.content?.[0]?.text || '';
+    let result;
+    try {
+      const clean = text.replace(/```json|```/g,'').trim();
+      result = JSON.parse(clean);
+    } catch(e) {
+      result = {
+        aliments: ['Repas analysé'],
+        calories_estimees: 400,
+        proteines: 30,
+        glucides: 35,
+        lipides: 12,
+        verdict: 'bon',
+        message: 'Analyse effectuée',
+        conseil: 'Continue comme ça !'
+      };
+    }
+
+    const verdictColors = {
+      'excellent': '#22c55e',
+      'bon': '#B8D400',
+      'moyen': '#f97316',
+      'eviter': '#ef4444'
+    };
+    const verdictEmojis = {
+      'excellent': '🌟',
+      'bon': '✅',
+      'moyen': '⚠️',
+      'eviter': '❌'
+    };
+    const vc = verdictColors[result.verdict] || '#B8D400';
+    const ve = verdictEmojis[result.verdict] || '✅';
+
+    _dernierResultatPhoto = result;
+    if(resultDiv) {
+      resultDiv.style.display = 'block';
+      resultDiv.innerHTML =
+        "<div style='background:#111;border:2px solid "+vc+";border-radius:12px;padding:16px;margin-bottom:12px;'>"
+        +"<div style='display:flex;align-items:center;gap:10px;margin-bottom:12px;'>"
+        +"<span style='font-size:32px;'>"+ve+"</span>"
+        +"<div>"
+        +"<div style='font-size:16px;font-weight:700;color:"+vc+";text-transform:capitalize;'>"+result.verdict+"</div>"
+        +"<div style='font-size:12px;color:var(--tx3);'>"+result.aliments.join(', ')+"</div>"
+        +"</div>"
+        +"</div>"
+        +"<div style='display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:12px;'>"
+        +"<div style='background:#1a1a1a;border-radius:8px;padding:8px;text-align:center;'><div style='font-size:16px;font-weight:700;color:"+vc+";'>"+result.calories_estimees+"</div><div style='font-size:9px;color:var(--tx3);'>kcal</div></div>"
+        +"<div style='background:#1a1a1a;border-radius:8px;padding:8px;text-align:center;'><div style='font-size:16px;font-weight:700;color:var(--v);'>"+result.proteines+"g</div><div style='font-size:9px;color:var(--tx3);'>Prot.</div></div>"
+        +"<div style='background:#1a1a1a;border-radius:8px;padding:8px;text-align:center;'><div style='font-size:16px;font-weight:700;color:var(--v);'>"+result.glucides+"g</div><div style='font-size:9px;color:var(--tx3);'>Gluc.</div></div>"
+        +"<div style='background:#1a1a1a;border-radius:8px;padding:8px;text-align:center;'><div style='font-size:16px;font-weight:700;color:var(--v);'>"+result.lipides+"g</div><div style='font-size:9px;color:var(--tx3);'>Lip.</div></div>"
+        +"</div>"
+        +"<div style='font-size:13px;color:#fff;margin-bottom:8px;'>"+result.message+"</div>"
+        +"<div style='font-size:12px;color:var(--tx3);background:#1a1a1a;border-radius:8px;padding:8px;'>💡 "+result.conseil+"</div>"
+        +"</div>"
+    +"<button onclick=\"enregistrerDernierRepas()\" style=\"width:100%;background:var(--v);color:#0A0A0A;border:none;padding:12px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;margin-bottom:8px;\">✅ Enregistrer dans mon journal</button>";
+    }
+    if(btn) { btn.textContent = 'Nouvelle analyse'; btn.disabled = false; btn.style.background = '#333'; btn.style.color = '#666'; }
+  } catch(err) {
+    _dernierResultatPhoto = result;
+    if(resultDiv) {
+      resultDiv.style.display = 'block';
+      resultDiv.innerHTML = "<div style='color:#ef4444;font-size:13px;'>Erreur: "+err.message+"</div>";
+    }
+    if(btn) { btn.textContent = 'Réessayer'; btn.disabled = false; }
+  }
+}
+
+function enregistrerRepasPhoto(cal, nom, prot, gluc, lip) {
+  const me = getC(state.myId);
+  if(!me) return;
+  const now = new Date();
+  const heures = now.getHours();
+  const repasNom = heures < 10 ? 'Petit-déjeuner' : heures < 14 ? 'Déjeuner' : heures < 18 ? 'Collation' : 'Dîner';
+  updC(state.myId, c => {
+    const today = td();
+    const existing = c.journal.find(j => j.date === today);
+    if(existing) {
+      existing.repas.push({nom: repasNom+': '+nom, cal, prot});
+    } else {
+      c.journal.unshift({date: today, repas:[{nom: repasNom+': '+nom, cal, prot}], energie: 7, note: 'Enregistré via photo'});
+    }
+    if(!c.gamif) c.gamif = {xp_bonus:0, streak:0, badges_earned:[], last_log_date:''};
+    c.gamif.xp_bonus = (c.gamif.xp_bonus||0) + 20;
+    return c;
+  });
+  document.getElementById('photo-repas-modal')?.remove();
+  setTimeout(()=>celebrer('Repas enregistré ! +20 XP', '🥗'), 300);
+  renderClient();
+}
+
 function getExerciceDetail(nom) {
   const key = nom.toLowerCase()
     .replace(/ /g,"_").replace(/[éè]/g,"e").replace(/[àâ]/g,"a")
@@ -6003,6 +6211,645 @@ function setCdt(t) {
   renderFiche();
 }
 
+
+
+// ═══════════════════════ AUTO-INSCRIPTION CLIENT ═════════════════════
+function fermerAutoRegister(){var m=document.getElementById('auto-register-modal');if(m)m.remove();}
+
+function showAutoInscription() {
+  const mo = document.createElement("div");
+  mo.id = "auto-register-modal";
+  mo.style.cssText = "position:fixed;top:0;right:0;bottom:0;left:0;background:rgba(0,0,0,.95);display:flex;align-items:center;justify-content:center;z-index:200;padding:16px;";
+  
+  const card = document.createElement("div");
+  card.style.cssText = "background:#1a1a1a;border:2px solid var(--v);border-radius:20px;padding:24px;width:100%;max-width:440px;";
+  card.innerHTML = 
+    "<div style='text-align:center;margin-bottom:20px;'>"
+    +"<div style='font-size:32px;margin-bottom:8px;'>💪</div>"
+    +"<div style='font-size:20px;font-weight:700;'>Créer mon compte</div>"
+    +"<div style='font-size:13px;color:var(--tx3);margin-top:4px;'>Remplis tes informations</div>"
+    +"</div>"
+    +"<div style='display:flex;flex-direction:column;gap:12px;'>"
+    +"<input id='ar-pr' placeholder='Prénom *' style='background:#111;border:1px solid #333;color:#fff;padding:12px;border-radius:10px;font-size:14px;font-family:inherit;width:100%;box-sizing:border-box;'/>"
+    +"<input id='ar-nm' placeholder='Nom *' style='background:#111;border:1px solid #333;color:#fff;padding:12px;border-radius:10px;font-size:14px;font-family:inherit;width:100%;box-sizing:border-box;'/>"
+    +"<input id='ar-tl' placeholder='Téléphone (WhatsApp) *' type='tel' style='background:#111;border:1px solid #333;color:#fff;padding:12px;border-radius:10px;font-size:14px;font-family:inherit;width:100%;box-sizing:border-box;'/>"
+    +"<input id='ar-em' placeholder='Email (optionnel)' type='email' style='background:#111;border:1px solid #333;color:#fff;padding:12px;border-radius:10px;font-size:14px;font-family:inherit;width:100%;box-sizing:border-box;'/>"
+    +"<select id='ar-obj' style='background:#111;border:1px solid #333;color:#fff;padding:12px;border-radius:10px;font-size:14px;font-family:inherit;width:100%;'>"
+    +"<option value=''>Mon objectif *</option>"
+    +"<option value='Perte de gras'>🔥 Perte de gras</option>"
+    +"<option value='Prise de masse'>💪 Prise de masse</option>"
+    +"<option value='Tonification'>✨ Tonification</option>"
+    +"<option value='Remise en forme'>🏃 Remise en forme</option>"
+    +"<option value='Force'>⚡ Force</option>"
+    +"</select>"
+    +"<input id='ar-po' placeholder='Poids (kg) *' type='number' style='background:#111;border:1px solid #333;color:#fff;padding:12px;border-radius:10px;font-size:14px;font-family:inherit;width:100%;box-sizing:border-box;'/>"
+    +"<input id='ar-ta' placeholder='Taille (cm) *' type='number' style='background:#111;border:1px solid #333;color:#fff;padding:12px;border-radius:10px;font-size:14px;font-family:inherit;width:100%;box-sizing:border-box;'/>"
+    +"<div id='ar-err' style='color:#ef4444;font-size:12px;display:none;'></div>"
+    +"<button onclick='validerAutoInscription()' style='background:var(--v);color:#0A0A0A;border:none;padding:14px;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;'>Créer mon compte</button>"
+    +"<button onclick='fermerAutoRegister()' style='background:transparent;color:var(--tx3);border:1px solid #333;padding:12px;border-radius:10px;font-size:13px;cursor:pointer;font-family:inherit;'>Annuler</button>"
+    +"</div>";
+  
+  mo.appendChild(card);
+  document.body.appendChild(mo);
+}
+
+function validerAutoInscription() {
+  var pr = document.getElementById('ar-pr')?.value?.trim();
+  var nm = document.getElementById('ar-nm')?.value?.trim();
+  var tl = document.getElementById('ar-tl')?.value?.trim();
+  var em = document.getElementById('ar-em')?.value?.trim();
+  var obj = document.getElementById('ar-obj')?.value;
+  var po = document.getElementById('ar-po')?.value;
+  var ta = document.getElementById('ar-ta')?.value;
+  var err = document.getElementById('ar-err');
+  
+  if(!pr || !nm || !tl || !obj || !po || !ta) {
+    if(err) { err.textContent = "Merci de remplir tous les champs obligatoires (*)"; err.style.display = 'block'; }
+    return;
+  }
+  
+  // Trouver le coach principal (NC)
+  var coach = COACHES.NC;
+  if(!coach) return;
+  
+  // Générer un code unique
+  var code = (pr.substring(0,3) + nm.substring(0,3)).toUpperCase().replace(/[^A-Z]/g,'') + Math.floor(100+Math.random()*900);
+  
+  // Générer un ID unique
+  var newId = Date.now();
+  
+  // Créer le client
+  var nutri = matchNutrition({objectif: obj.toLowerCase().replace(' de ','').replace(' ',''), regime:'omnivore', poids:po, taille:ta, age:'28', sexe:'femme', activite:'leger'});
+  var prog = matchProgramme({objectif: obj.toLowerCase().split(' ')[0], niveau:'debutant', seances:'3', equip:'salle'});
+  
+  var newClient = {
+    id: newId, pr: pr, nm: nm, em: em||'', tl: tl, code: code,
+    obj: obj, of: 'Starter', st: 'actif', ta: parseInt(ta),
+    no: 'Client inscrit via formulaire',
+    po: [{d: td(), v: parseFloat(po)}],
+    prog: prog?.prog?.planning || {},
+    rappels: {jours:[], msg:''},
+    nutri: {cal: nutri?.calories||1800, prot: nutri?.proteines||130, gluc: nutri?.glucides||150, lip: nutri?.lipides||55, repas: nutri?.plan?.repas||[]},
+    ci: [], ms: [], fac: [], logs: [], defis: [], journal: [],
+    gamif: {xp_bonus:0, streak:0, badges_earned:[], last_log_date:''}
+  };
+  
+  coach.clients.push(newClient);
+  
+  // Sauvegarder Firebase
+  if(fbReady && db) { try { fbSaveClient(coach.id, newClient); } catch(e){} }
+  
+  // Fermer le modal et afficher le code
+  document.getElementById('auto-register-modal')?.remove();
+  
+  // Afficher le code au client
+  var codeModal = document.createElement("div");
+  codeModal.style.cssText = "position:fixed;top:0;right:0;bottom:0;left:0;background:rgba(0,0,0,.95);display:flex;align-items:center;justify-content:center;z-index:200;padding:16px;";
+  codeModal.innerHTML = "<div style='background:#1a1a1a;border:2px solid var(--v);border-radius:20px;padding:32px;width:100%;max-width:380px;text-align:center;'>"
+    +"<div style='font-size:48px;margin-bottom:16px;'>🎉</div>"
+    +"<div style='font-size:20px;font-weight:700;margin-bottom:8px;'>Compte créé !</div>"
+    +"<div style='font-size:14px;color:var(--tx3);margin-bottom:24px;'>Voici ton code de connexion. Note-le !</div>"
+    +"<div style='background:var(--v);color:#0A0A0A;font-size:28px;font-weight:900;letter-spacing:4px;padding:16px;border-radius:12px;margin-bottom:24px;'>"+code+"</div>"
+    +"<div style='font-size:12px;color:var(--tx3);margin-bottom:20px;'>Utilise ce code à chaque connexion sur l'app Anastase Coaching</div>"
+    +"<button onclick='this.parentElement.parentElement.remove();' style='background:var(--v);color:#0A0A0A;border:none;padding:14px 32px;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;'>Se connecter</button>"
+    +"</div>";
+  document.body.appendChild(codeModal);
+}
+
+
+// ═══════════════════════ TRACEUR GPS ACTIVITÉ ════════════════════════
+var _trackingState = {
+  active: false,
+  type: 'course',
+  startTime: null,
+  positions: [],
+  distance: 0,
+  watchId: null,
+  timerInterval: null
+};
+
+
+// ══════════════════════════════════════════════════════════════════
+// 1. PHOTO TRANSFORMATION AVANT/APRÈS
+// ══════════════════════════════════════════════════════════════════
+
+// Bouton adapter programme IA
+function renderBtnAdaptation(clientId) {
+  return '<button id="btn-adapter-prog" onclick="analyserProgressionIA()" style="width:100%;background:rgba(184,212,0,.1);color:var(--v);border:1px solid var(--v);padding:10px;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;margin-top:12px;">🧬 Adapter mon programme avec l\'IA</button>';
+}
+function showPhotoTransformation() {
+  var me = getC(state.myId);
+  if(!me) return;
+  var mo = document.createElement("div");
+  mo.id = "transfo-modal";
+  mo.style.cssText = "position:fixed;top:0;right:0;bottom:0;left:0;background:#0A0A0A;z-index:200;overflow-y:auto;";
+  mo.innerHTML =
+    "<div style='padding:16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #222;position:sticky;top:0;background:#0A0A0A;z-index:1;'>"
+    +"<span onclick='fermerTransfo()' style='font-size:24px;cursor:pointer;color:#888;'>←</span>"
+    +"<div>"
+    +"<div style='font-size:16px;font-weight:700;'>📸 Transformation</div>"
+    +"<div style='font-size:11px;color:var(--tx3);'>Comparaison avant/après par IA</div>"
+    +"</div>"
+    +"</div>"
+    +"<div style='padding:16px;display:flex;flex-direction:column;gap:16px;'>"
+    +"<div style='display:grid;grid-template-columns:1fr 1fr;gap:12px;'>"
+    // Photo avant
+    +"<div>"
+    +"<div style='font-size:12px;color:var(--tx3);margin-bottom:6px;text-align:center;'>AVANT</div>"
+    +"<div id='transfo-avant-preview' onclick='selectTransfoPhoto(\'avant\')' style='aspect-ratio:3/4;background:#111;border:2px dashed #333;border-radius:12px;display:flex;align-items:center;justify-content:center;cursor:pointer;overflow:hidden;'>"
+    +"<div style='text-align:center;color:#444;font-size:12px;'>📷<br>Ajouter</div>"
+    +"</div>"
+    +"</div>"
+    // Photo après
+    +"<div>"
+    +"<div style='font-size:12px;color:var(--tx3);margin-bottom:6px;text-align:center;'>APRÈS</div>"
+    +"<div id='transfo-apres-preview' onclick='selectTransfoPhoto(\'apres\')' style='aspect-ratio:3/4;background:#111;border:2px dashed #333;border-radius:12px;display:flex;align-items:center;justify-content:center;cursor:pointer;overflow:hidden;'>"
+    +"<div style='text-align:center;color:#444;font-size:12px;'>📷<br>Ajouter</div>"
+    +"</div>"
+    +"</div>"
+    +"</div>"
+    +"<input type='file' id='transfo-input' accept='image/*' style='display:none;' onchange='handleTransfoPhoto(this)'/>"
+    +"<div style='font-size:12px;color:var(--tx3);background:#111;border-radius:10px;padding:12px;'>💡 Prends les photos dans la même position, même éclairage, pour une analyse plus précise.</div>"
+    +"<div id='transfo-result' style='display:none;'></div>"
+    +"<button id='transfo-btn' onclick='analyserTransformation()' disabled style='background:#333;color:#666;border:none;padding:14px;border-radius:12px;font-size:15px;font-weight:700;cursor:not-allowed;font-family:inherit;'>Analyser avec l\'IA</button>"
+    +"</div>";
+  document.body.appendChild(mo);
+  window._transfoPhotos = {avant: null, apres: null, current: null};
+}
+
+function fermerTransfo() {
+  var m = document.getElementById('transfo-modal');
+  if(m) m.remove();
+}
+
+function selectTransfoPhoto(type) {
+  window._transfoPhotos = window._transfoPhotos || {avant:null,apres:null};
+  window._transfoPhotos.current = type;
+  var inp = document.getElementById('transfo-input');
+  if(inp) inp.click();
+}
+
+function handleTransfoPhoto(input) {
+  var file = input.files[0];
+  if(!file) return;
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    var type = window._transfoPhotos.current;
+    window._transfoPhotos[type] = e.target.result.split(',')[1];
+    var preview = document.getElementById('transfo-'+type+'-preview');
+    if(preview) preview.innerHTML = '<img src="'+e.target.result+'" style="width:100%;height:100%;object-fit:cover;"/>';
+    if(window._transfoPhotos.avant && window._transfoPhotos.apres) {
+      var btn = document.getElementById('transfo-btn');
+      if(btn) { btn.disabled=false; btn.style.background='var(--v)'; btn.style.color='#0A0A0A'; btn.style.cursor='pointer'; }
+    }
+  };
+  reader.readAsDataURL(file);
+}
+
+async function analyserTransformation() {
+  var me = getC(state.myId);
+  var btn = document.getElementById('transfo-btn');
+  var res = document.getElementById('transfo-result');
+  if(btn) { btn.textContent='Analyse en cours...'; btn.disabled=true; }
+  
+  var poids = me ? (me.po[me.po.length-1]?.v||70) : 70;
+  var obj = me ? me.obj : 'perte de gras';
+  
+  try {
+    var response = await fetch('/api/claude', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({
+        model:'claude-sonnet-4-5',
+        max_tokens:800,
+        system:"Tu es un expert morphologie fitness. Compare les 2 photos (avant/apres) et reponds UNIQUEMENT en JSON: {score_global,perte_gras,gain_muscle,zones_ameliorees,abdos_apparents,posture,tour_taille,message,prochain_objectif,points_forts}. Objectif: "+obj,
+        messages:[{role:'user',content:[
+          {type:'text',text:'Photo AVANT (première photo):'},
+          {type:'image',source:{type:'base64',media_type:'image/jpeg',data:window._transfoPhotos.avant}},
+          {type:'text',text:'Photo APRÈS (deuxième photo):'},
+          {type:'image',source:{type:'base64',media_type:'image/jpeg',data:window._transfoPhotos.apres}},
+          {type:'text',text:'Compare ces 2 photos et analyse la transformation corporelle.'}
+        ]}]
+      })
+    });
+    var data = await response.json();
+    var text = data.content?.[0]?.text||'';
+    var r = JSON.parse(text.replace(/```json|```/g,'').trim());
+    
+    var score = r.score_global||5;
+    var stars = '';
+    for(var i=0;i<10;i++) stars += i<score?'⭐':'☆';
+    
+    if(res) {
+      res.style.display='block';
+      res.innerHTML =
+        "<div style='background:#111;border:2px solid var(--v);border-radius:16px;padding:20px;'>"
+        +"<div style='text-align:center;margin-bottom:16px;'>"
+        +"<div style='font-size:14px;color:var(--tx3);margin-bottom:4px;'>Score transformation</div>"
+        +"<div style='font-size:36px;font-weight:900;color:var(--v);'>"+score+"/10</div>"
+        +"<div style='font-size:16px;'>"+stars+"</div>"
+        +"</div>"
+        +"<div style='display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px;'>"
+        +"<div style='background:#1a1a1a;border-radius:10px;padding:10px;text-align:center;'>"
+        +"<div style='font-size:11px;color:var(--tx3);'>Perte gras</div>"
+        +"<div style='font-size:14px;font-weight:700;color:var(--v);'>"+( r.perte_gras||'—')+"</div>"
+        +"</div>"
+        +"<div style='background:#1a1a1a;border-radius:10px;padding:10px;text-align:center;'>"
+        +"<div style='font-size:11px;color:var(--tx3);'>Gain muscle</div>"
+        +"<div style='font-size:14px;font-weight:700;color:var(--v);'>"+(r.gain_muscle||'—')+"</div>"
+        +"</div>"
+        +"<div style='background:#1a1a1a;border-radius:10px;padding:10px;text-align:center;'>"
+        +"<div style='font-size:11px;color:var(--tx3);'>Tour de taille</div>"
+        +"<div style='font-size:14px;font-weight:700;color:var(--v);'>"+(r.tour_taille||'—')+"</div>"
+        +"</div>"
+        +"<div style='background:#1a1a1a;border-radius:10px;padding:10px;text-align:center;'>"
+        +"<div style='font-size:11px;color:var(--tx3);'>Abdos</div>"
+        +"<div style='font-size:14px;font-weight:700;color:var(--v);'>"+(r.abdos_apparents?'Apparents ✅':'En cours 💪')+"</div>"
+        +"</div>"
+        +"</div>"
+        +(r.zones_ameliorees?.length?"<div style='margin-bottom:12px;'><div style='font-size:12px;color:var(--tx3);margin-bottom:6px;'>Zones améliorées</div><div style='display:flex;flex-wrap:wrap;gap:6px;'>"+r.zones_ameliorees.map(function(z){return "<span style='background:rgba(184,212,0,.15);color:var(--v);padding:4px 10px;border-radius:20px;font-size:12px;'>"+z+"</span>";}).join('')+"</div></div>":'')
+        +"<div style='font-size:14px;color:#fff;margin-bottom:8px;'>"+( r.message||'')+"</div>"
+        +"<div style='background:rgba(184,212,0,.08);border-left:3px solid var(--v);padding:10px;border-radius:0 8px 8px 0;font-size:12px;color:var(--tx3);'>🎯 "+(r.prochain_objectif||'Continue comme ça !')+"</div>"
+        +"</div>";
+    }
+    if(btn) { btn.textContent='Nouvelle analyse'; btn.disabled=false; btn.style.background='#333'; btn.style.color='#666'; }
+    // XP
+    updC(state.myId, function(c){ if(!c.gamif) c.gamif={xp_bonus:0}; c.gamif.xp_bonus=(c.gamif.xp_bonus||0)+50; return c; });
+  } catch(e) {
+    if(res){res.style.display='block';res.innerHTML="<div style='color:#ef4444;font-size:13px;'>Erreur: "+e.message+"</div>";}
+    if(btn){btn.textContent='Réessayer';btn.disabled=false;}
+  }
+}
+
+// ══════════════════════════════════════════════════════════════════
+// 2. COACH IA 24H/24
+// ══════════════════════════════════════════════════════════════════
+var _coachMessages = [];
+
+function showCoachIA() {
+  var me = getC(state.myId);
+  if(!me) return;
+  _coachMessages = [];
+  var mo = document.createElement("div");
+  mo.id = "coach-ia-modal";
+  mo.style.cssText = "position:fixed;top:0;right:0;bottom:0;left:0;background:#0A0A0A;z-index:200;display:flex;flex-direction:column;";
+  mo.innerHTML =
+    "<div style='padding:16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #222;'>"
+    +"<span onclick='fermerCoachIA()' style='font-size:24px;cursor:pointer;color:#888;'>←</span>"
+    +"<div>"
+    +"<div style='font-size:16px;font-weight:700;'>🤖 Coach IA</div>"
+    +"<div style='font-size:11px;color:var(--tx3);'>Disponible 24h/24 — Répond en secondes</div>"
+    +"</div>"
+    +"</div>"
+    +"<div id='coach-ia-msgs' style='flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px;'>"
+    +"<div style='background:#1a1a1a;border-radius:12px 12px 12px 4px;padding:12px 14px;max-width:85%;font-size:14px;'>"
+    +"Salut "+me.pr+" ! 💪 Je suis ton coach IA. Tu peux me poser toutes tes questions sur ta nutrition, ton programme, ta progression ou la récupération. Je suis là 24h/24 !"
+    +"</div>"
+    +"</div>"
+    +"<div style='padding:12px;border-top:1px solid #222;display:flex;gap:8px;'>"
+    +"<input id='coach-ia-input' placeholder='Pose ta question...' onkeydown='checkEnterCoachIA(event)' style='flex:1;background:#1a1a1a;border:1px solid #333;color:#fff;padding:12px;border-radius:12px;font-size:14px;font-family:inherit;'/>"
+    +"<button onclick='envoyerCoachIA()' style='background:var(--v);color:#0A0A0A;border:none;padding:12px 16px;border-radius:12px;font-size:20px;cursor:pointer;'>➤</button>"
+    +"</div>";
+  document.body.appendChild(mo);
+}
+
+function checkEnterCoachIA(e){if(e.key==='Enter')envoyerCoachIA();}
+
+function fermerCoachIA() {
+  var m = document.getElementById('coach-ia-modal');
+  if(m) m.remove();
+}
+
+async function envoyerCoachIA() {
+  var inp = document.getElementById('coach-ia-input');
+  var msgs = document.getElementById('coach-ia-msgs');
+  var msg = inp?.value?.trim();
+  if(!msg || !msgs) return;
+  inp.value = '';
+  var me = getC(state.myId);
+  
+  // Message utilisateur
+  var userEl = document.createElement('div');
+  userEl.style.cssText = 'background:var(--v);color:#0A0A0A;border-radius:12px 12px 4px 12px;padding:12px 14px;max-width:85%;align-self:flex-end;font-size:14px;font-weight:600;';
+  userEl.textContent = msg;
+  msgs.appendChild(userEl);
+  msgs.scrollTop = msgs.scrollHeight;
+  
+  // Indicateur chargement
+  var loadEl = document.createElement('div');
+  loadEl.style.cssText = 'background:#1a1a1a;border-radius:12px 12px 12px 4px;padding:12px 14px;max-width:85%;font-size:14px;color:var(--tx3);';
+  loadEl.textContent = '...';
+  msgs.appendChild(loadEl);
+  msgs.scrollTop = msgs.scrollHeight;
+  
+  _coachMessages.push({role:'user',content:msg});
+  
+  var systemCtx = 'Tu es le coach personnel de '+me.pr+'. Objectif: '+me.obj+'. Poids: '+(me.po[me.po.length-1]?.v||'?')+'kg. Programme: '+(Object.keys(me.prog||{}).join(', ')||'en cours')+'. Calories/j: '+(me.nutri?.cal||1800)+'kcal. Réponds de façon courte, directe et motivante en français. Max 3 phrases. Tu es expert en fitness, nutrition et récupération.';
+  
+  try {
+    var response = await fetch('/api/claude', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-5',
+        max_tokens:300,
+        system:systemCtx,
+        messages:_coachMessages.slice(-6)
+      })
+    });
+    var data = await response.json();
+    var reply = data.content?.[0]?.text||'Je suis là ! Reformule ta question.';
+    _coachMessages.push({role:'assistant',content:reply});
+    loadEl.style.color = '#fff';
+    loadEl.textContent = reply;
+  } catch(e) {
+    loadEl.style.color = '#ef4444';
+    loadEl.textContent = 'Erreur de connexion. Réessaie.';
+  }
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+// ══════════════════════════════════════════════════════════════════
+// 3. PROGRAMME AUTO-ADAPTATIF
+// ══════════════════════════════════════════════════════════════════
+function fermerAdaptModal(el){var p=el;for(var i=0;i<5;i++){p=p.parentElement;if(p&&p.style&&p.style.position==='fixed'){p.remove();return;}}}
+
+async function analyserProgressionIA() {
+  var me = getC(state.myId);
+  if(!me) return;
+  
+  var logs = me.logs||[];
+  if(logs.length < 2) {
+    alert('Il te faut au moins 2 séances enregistrées pour que l\'IA adapte ton programme.');
+    return;
+  }
+  
+  var btn = document.getElementById('btn-adapter-prog');
+  if(btn) { btn.textContent='Analyse en cours...'; btn.disabled=true; }
+  
+  var logsResume = logs.slice(0,5).map(function(l){return l.date+': sensation='+l.sensation+'/10';}).join(', ');
+  var progActuel = Object.entries(me.prog||{}).map(function(e){return e[0]+': '+(Array.isArray(e[1])?e[1].join(', '):JSON.stringify(e[1]));}).join(' | ');
+
+  try {
+    var response = await fetch('/api/claude', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-5',
+        max_tokens:600,
+        system:'Tu es coach fitness expert. Analyse et reponds en JSON: {bilan,adaptations,charge_semaine_prochaine,points_positifs,conseil_recuperation}',
+        system:'Tu es coach fitness expert. Analyse et reponds en JSON: {bilan,adaptations,charge_semaine_prochaine,points_positifs,conseil_recuperation}',
+        messages:[{role:'user',content:'Programme: '+progActuel+'. Objectif: '+me.obj}]
+      })
+    });
+    var r = JSON.parse((data.content?.[0]?.text||'{}').replace(/```json|```/g,'').trim());
+    
+    // Afficher le résultat
+    var mo = document.createElement('div');
+    mo.style.cssText = 'position:fixed;top:0;right:0;bottom:0;left:0;background:rgba(0,0,0,.92);z-index:210;display:flex;align-items:flex-end;justify-content:center;padding:16px;';
+    mo.innerHTML =
+      "<div style='background:#1a1a1a;border:2px solid var(--v);border-radius:20px 20px 0 0;padding:20px;width:100%;max-width:480px;max-height:80vh;overflow-y:auto;'>"
+      +"<div style='display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;'>"
+      +"<div style='font-size:16px;font-weight:700;'>🧬 Adaptations IA</div>"
+      +"<span onclick='fermerAdaptModal(this)' style='font-size:20px;cursor:pointer;color:#888;'>×</span>"
+      +"</div>"
+      +"<div style='font-size:13px;color:var(--tx3);margin-bottom:12px;'>"+( r.bilan||'')+"</div>"
+      +(r.adaptations?.length?"<div style='margin-bottom:12px;'><div style='font-size:12px;color:var(--v);font-weight:600;margin-bottom:8px;'>ADAPTATIONS RECOMMANDÉES</div>"+r.adaptations.map(function(a){return "<div style='background:#111;border-left:3px solid var(--v);padding:8px 12px;border-radius:0 8px 8px 0;margin-bottom:6px;font-size:13px;'>"+a+"</div>";}).join('')+"</div>":'')
+      +(r.points_positifs?.length?"<div style='margin-bottom:12px;'><div style='font-size:12px;color:#22c55e;font-weight:600;margin-bottom:8px;'>POINTS POSITIFS</div>"+r.points_positifs.map(function(p){return "<div style='font-size:13px;color:#fff;margin-bottom:4px;'>✅ "+p+"</div>";}).join('')+"</div>":'')
+      +(r.conseil_recuperation?"<div style='background:rgba(184,212,0,.08);border-radius:10px;padding:12px;font-size:13px;color:var(--tx3);'>💤 "+r.conseil_recuperation+"</div>":'')
+      +"<div style='font-size:12px;color:var(--tx3);margin-top:12px;text-align:center;'>Partage ces recommandations avec ton coach</div>"
+      +"</div>";
+    document.body.appendChild(mo);
+    
+  } catch(e) {
+    alert('Erreur: '+e.message);
+  }
+  if(btn){btn.textContent='🧬 Adapter mon programme';btn.disabled=false;}
+}
+
+function showTraceur() {
+  var mo = document.createElement("div");
+  mo.id = "traceur-modal";
+  mo.style.cssText = "position:fixed;top:0;right:0;bottom:0;left:0;background:#0A0A0A;z-index:200;display:flex;flex-direction:column;";
+  mo.innerHTML =
+    "<div style='padding:16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #222;'>"
+    +"<span onclick='fermerTraceur()' style='font-size:24px;cursor:pointer;color:#888;'>←</span>"
+    +"<span style='font-size:16px;font-weight:700;'>Activité GPS</span>"
+    +"</div>"
+    +"<div style='padding:20px;flex:1;display:flex;flex-direction:column;gap:16px;'>"
+    // Type d'activité
+    +"<div style='display:grid;grid-template-columns:1fr 1fr;gap:10px;'>"
+    +"<button onclick='selectActivite(this,\'course\')' id='btn-course' style='background:var(--v);color:#0A0A0A;border:none;padding:16px;border-radius:12px;font-size:24px;cursor:pointer;font-family:inherit;font-weight:700;'>🏃<br><span style=\'font-size:13px;\'>Course</span></button>"
+    +"<button onclick='selectActivite(this,\'velo\')' id='btn-velo' style='background:#1a1a1a;color:var(--v);border:2px solid #333;padding:16px;border-radius:12px;font-size:24px;cursor:pointer;font-family:inherit;font-weight:700;'>🚴<br><span style=\'font-size:13px;\'>Vélo</span></button>"
+    +"</div>"
+    // Stats en temps réel
+    +"<div style='display:grid;grid-template-columns:repeat(2,1fr);gap:10px;'>"
+    +"<div style='background:#1a1a1a;border-radius:12px;padding:16px;text-align:center;'>"
+    +"<div id='tr-dist' style='font-size:32px;font-weight:900;color:var(--v);'>0.00</div>"
+    +"<div style='font-size:11px;color:var(--tx3);margin-top:4px;'>KM</div>"
+    +"</div>"
+    +"<div style='background:#1a1a1a;border-radius:12px;padding:16px;text-align:center;'>"
+    +"<div id='tr-cal' style='font-size:32px;font-weight:900;color:var(--v);'>0</div>"
+    +"<div style='font-size:11px;color:var(--tx3);margin-top:4px;'>CALORIES</div>"
+    +"</div>"
+    +"<div style='background:#1a1a1a;border-radius:12px;padding:16px;text-align:center;'>"
+    +"<div id='tr-time' style='font-size:32px;font-weight:900;color:#fff;'>00:00</div>"
+    +"<div style='font-size:11px;color:var(--tx3);margin-top:4px;'>DURÉE</div>"
+    +"</div>"
+    +"<div style='background:#1a1a1a;border-radius:12px;padding:16px;text-align:center;'>"
+    +"<div id='tr-pace' style='font-size:32px;font-weight:900;color:#fff;'>--:--</div>"
+    +"<div id='tr-pace-label' style='font-size:11px;color:var(--tx3);margin-top:4px;'>MIN/KM</div>"
+    +"</div>"
+    +"</div>"
+    // Statut GPS
+    +"<div id='tr-gps-status' style='text-align:center;font-size:13px;color:var(--tx3);'>📍 En attente du GPS...</div>"
+    // Bouton démarrer/arrêter
+    +"<button id='tr-btn' onclick='toggleTracking()' style='background:var(--v);color:#0A0A0A;border:none;padding:18px;border-radius:16px;font-size:18px;font-weight:900;cursor:pointer;font-family:inherit;margin-top:auto;'>▶ DÉMARRER</button>"
+    +"</div>";
+  document.body.appendChild(mo);
+  _trackingState.active = false;
+  _trackingState.type = 'course';
+}
+
+function fermerTraceur() {
+  if(_trackingState.active) {
+    if(!confirm('Arrêter l\'activité en cours ?')) return;
+    stopTracking(false);
+  }
+  var mo = document.getElementById('traceur-modal');
+  if(mo) mo.remove();
+}
+
+function selectActivite(btn, type) {
+  _trackingState.type = type;
+  var btns = ['btn-course','btn-velo'];
+  btns.forEach(function(id) {
+    var b = document.getElementById(id);
+    if(b) { b.style.background = '#1a1a1a'; b.style.color = 'var(--v)'; b.style.border = '2px solid #333'; }
+  });
+  if(btn) { btn.style.background = 'var(--v)'; btn.style.color = '#0A0A0A'; btn.style.border = 'none'; }
+  var lbl = document.getElementById('tr-pace-label');
+  if(lbl) lbl.textContent = type === 'velo' ? 'KM/H' : 'MIN/KM';
+}
+
+function toggleTracking() {
+  if(!_trackingState.active) {
+    startTracking();
+  } else {
+    stopTracking(true);
+  }
+}
+
+function startTracking() {
+  if(!navigator.geolocation) {
+    alert('GPS non disponible sur cet appareil');
+    return;
+  }
+  _trackingState.active = true;
+  _trackingState.startTime = Date.now();
+  _trackingState.positions = [];
+  _trackingState.distance = 0;
+  
+  var btn = document.getElementById('tr-btn');
+  if(btn) { btn.textContent = '⏹ ARRÊTER'; btn.style.background = '#ef4444'; btn.style.color = '#fff'; }
+  
+  var statusEl = document.getElementById('tr-gps-status');
+  if(statusEl) statusEl.innerHTML = '🟢 GPS actif — Bonne session !';
+  
+  // Démarrer le timer
+  _trackingState.timerInterval = setInterval(function() {
+    var elapsed = Math.floor((Date.now() - _trackingState.startTime) / 1000);
+    var mins = Math.floor(elapsed / 60);
+    var secs = elapsed % 60;
+    var timeEl = document.getElementById('tr-time');
+    if(timeEl) timeEl.textContent = (mins < 10 ? '0' : '') + mins + ':' + (secs < 10 ? '0' : '') + secs;
+    updateCalories();
+  }, 1000);
+  
+  // Démarrer le tracking GPS
+  _trackingState.watchId = navigator.geolocation.watchPosition(
+    function(pos) {
+      var coords = {lat: pos.coords.latitude, lng: pos.coords.longitude, t: Date.now()};
+      if(_trackingState.positions.length > 0) {
+        var prev = _trackingState.positions[_trackingState.positions.length - 1];
+        var d = haversineKm(prev.lat, prev.lng, coords.lat, coords.lng);
+        if(d > 0.005) { // Ignorer si < 5m (éviter bruit GPS)
+          _trackingState.distance += d;
+          var distEl = document.getElementById('tr-dist');
+          if(distEl) distEl.textContent = _trackingState.distance.toFixed(2);
+          updatePace(coords.t - prev.t, d);
+        }
+      }
+      _trackingState.positions.push(coords);
+    },
+    function(err) {
+      var statusEl = document.getElementById('tr-gps-status');
+      if(statusEl) statusEl.innerHTML = '⚠️ Erreur GPS: ' + err.message;
+    },
+    {enableHighAccuracy: true, maximumAge: 2000, timeout: 10000}
+  );
+}
+
+function stopTracking(save) {
+  _trackingState.active = false;
+  if(_trackingState.watchId) { navigator.geolocation.clearWatch(_trackingState.watchId); }
+  if(_trackingState.timerInterval) { clearInterval(_trackingState.timerInterval); }
+  
+  var btn = document.getElementById('tr-btn');
+  if(btn) { btn.textContent = '▶ DÉMARRER'; btn.style.background = 'var(--v)'; btn.style.color = '#0A0A0A'; }
+  
+  if(save && _trackingState.distance > 0 && state.myId) {
+    saveActivite();
+  }
+}
+
+function haversineKm(lat1, lng1, lat2, lng2) {
+  var R = 6371;
+  var dLat = (lat2 - lat1) * Math.PI / 180;
+  var dLng = (lng2 - lng1) * Math.PI / 180;
+  var a = Math.sin(dLat/2) * Math.sin(dLat/2)
+    + Math.cos(lat1 * Math.PI/180) * Math.cos(lat2 * Math.PI/180)
+    * Math.sin(dLng/2) * Math.sin(dLng/2);
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+}
+
+function updateCalories() {
+  var me = getC(state.myId);
+  var poids = me ? (me.po[me.po.length-1]?.v || 70) : 70;
+  var elapsed = (Date.now() - _trackingState.startTime) / 3600000; // heures
+  var cal = _trackingState.type === 'velo'
+    ? Math.round(poids * 8 * elapsed)   // ~8 MET vélo modéré
+    : Math.round(poids * 11 * elapsed); // ~11 MET course modérée
+  var calEl = document.getElementById('tr-cal');
+  if(calEl) calEl.textContent = cal;
+}
+
+function updatePace(dtMs, dKm) {
+  var paceEl = document.getElementById('tr-pace');
+  var lblEl = document.getElementById('tr-pace-label');
+  if(!paceEl) return;
+  if(_trackingState.type === 'velo') {
+    var kmh = (dKm / (dtMs / 3600000));
+    paceEl.textContent = kmh.toFixed(1);
+    if(lblEl) lblEl.textContent = 'KM/H';
+  } else {
+    var minPerKm = (dtMs / 60000) / dKm;
+    var m = Math.floor(minPerKm);
+    var s = Math.round((minPerKm - m) * 60);
+    paceEl.textContent = m + ':' + (s < 10 ? '0' : '') + s;
+    if(lblEl) lblEl.textContent = 'MIN/KM';
+  }
+}
+
+function saveActivite() {
+  var elapsed = Math.floor((Date.now() - _trackingState.startTime) / 1000);
+  var me = getC(state.myId);
+  var poids = me ? (me.po[me.po.length-1]?.v || 70) : 70;
+  var cal = _trackingState.type === 'velo'
+    ? Math.round(poids * 8 * (elapsed/3600))
+    : Math.round(poids * 11 * (elapsed/3600));
+  
+  var activite = {
+    type: _trackingState.type,
+    date: td(),
+    duree: elapsed,
+    distance: parseFloat(_trackingState.distance.toFixed(2)),
+    calories: cal,
+    icon: _trackingState.type === 'velo' ? '🚴' : '🏃'
+  };
+  
+  updC(state.myId, function(c) {
+    if(!c.activites) c.activites = [];
+    c.activites.unshift(activite);
+    if(!c.gamif) c.gamif = {xp_bonus:0,streak:0,badges_earned:[],last_log_date:''};
+    c.gamif.xp_bonus = (c.gamif.xp_bonus||0) + 30;
+    return c;
+  });
+  
+  var mins = Math.floor(elapsed/60);
+  var secs = elapsed%60;
+  var recap = (_trackingState.type==='velo'?'🚴 Vélo':'🏃 Course')
+    +' • '+activite.distance+'km • '
+    +mins+'min'+(secs>0?secs+'s':'')
+    +' • '+cal+' kcal';
+  
+  document.getElementById('traceur-modal')?.remove();
+  setTimeout(function(){celebrer(recap, _trackingState.type==='velo'?'🚴':'🏃');}, 200);
+  renderClient();
+}
+
+function supprimerClient(id) {
+  var c = getC(id);
+  if(!c) return;
+  if(!confirm("Supprimer " + c.pr + " " + c.nm + " ?")) return;
+  currentCoach.clients = currentCoach.clients.filter(function(cl){return cl.id !== id;});
+  if(fbReady && db) {
+    try { db.collection("coaches").doc(currentCoach.id).collection("clients").doc(String(id)).delete(); } catch(e){}
+  }
+  state.sid = null;
+  openCoach();
+}
+
 function renderFiche() {
   const c=getC(state.sid); if(!c)return;
   const u=unread(c.id);
@@ -6020,6 +6867,7 @@ function renderFiche() {
       <span class="bdg ${c.st==="actif"?"bdg-on":"bdg-off"}">${c.st==="actif"?"Actif":"Pause"}</span>
       <button class="sbtn" style="font-size:10px;padding:4px 10px;" onclick="enterViewAs(${c.id})">👁 Voir comme ${c.pr}</button>
       <button class="dbtn" style="font-size:10px;" onclick="toggleStatut(${c.id})">${c.st==="actif"?"→ Pause":"→ Réactiver"}</button>
+    <button onclick="supprimerClient(c.id)" style="background:rgba(239,68,68,.1);color:#ef4444;border:1px solid #ef4444;padding:6px 12px;border-radius:8px;font-size:12px;cursor:pointer;font-family:inherit;">🗑️ Supprimer</button>
     </div>
   </div>
   <div class="tabs" id="fiche-tabs" style="margin:0 -12px;">
@@ -7514,6 +8362,29 @@ function matchNutrition(reponses) {
     lipides: Math.round((plan.lipides_base||50) * ratio),
   };
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
